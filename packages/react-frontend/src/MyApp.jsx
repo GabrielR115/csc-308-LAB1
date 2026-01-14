@@ -1,30 +1,26 @@
-// src/MyApp.jsx
 import React, { useState } from "react";
 import Table from "./Table";
-
-const [characters, setCharacters] = useState([]);
+import Form from "./Form";
 
 function MyApp() {
-  const [characters, setCharacters] = useState([
-    {
-      name: "Charlie",
-      job: "Janitor" // the rest of the data
-    }
-  ]);
+  const [characters, setCharacters] = useState([]); 
+
+  function updateList(person) {
+    setCharacters([...characters, person]);
+  }
 
   function removeOneCharacter(index) {
-    const updated = characters.filter((character, i) => {
-      return i !== index;
-    });
+    const updated = characters.filter((character, i) => i !== index);
     setCharacters(updated);
   }
+
   return (
     <div className="container">
       <Table
         characterData={characters}
         removeCharacter={removeOneCharacter}
       />
-      <Form />
+      <Form handleSubmit={updateList} />
     </div>
   );
 }
