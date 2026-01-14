@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Table from "./Table";
 
+const [characters, setCharacters] = useState([]);
 
 function MyApp() {
   const [characters, setCharacters] = useState([
@@ -23,6 +24,7 @@ function MyApp() {
         characterData={characters}
         removeCharacter={removeOneCharacter}
       />
+      <Form />
     </div>
   );
 }
