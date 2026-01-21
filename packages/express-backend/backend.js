@@ -90,10 +90,21 @@ const addUser = (user) => {
   return user;
 };
 
+const makeID = () => {
+  return "id_" + Math.floor(Math.random() * 1_000_000_000);
+};
+
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
-  addUser(userToAdd);
-  res.send();
+
+  const userWithId = {
+    id: makeID(),
+    name: userToAdd.name,
+    job: userToAdd.job,
+  };
+
+  addUser(userWithId);
+  res.status(201).send(userWithId);
 });
 
 
@@ -116,9 +127,9 @@ app.delete("/users/:id", (req, res) => {
   const deleted = deleteUserById(id);
 
   if (!deleted) {
-    res.status(404).send("Resource not found.");
+    res.status(404).send("404 not found.");
   } else {
-    res.send();
+    res.status(204).send();
   }
 });
 
