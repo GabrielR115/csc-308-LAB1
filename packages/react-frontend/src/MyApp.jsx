@@ -38,7 +38,7 @@ function MyApp() {
       .then((res) => {
         if (res.status === 204) {
           setCharacters((prev) =>
-            prev.filter((user) => user.id !== id)
+            prev.filter((user) => user._id !== id)
           );
         }
       })
